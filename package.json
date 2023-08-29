@@ -1,0 +1,19 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "frontend-progect-11",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnastasiaMir/frontend-project-11.git"
+  },
+  "author": "Anastasia Mironova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnastasiaMir/frontend-project-11/issues"
+  },
+  "homepage": "https://github.com/AnastasiaMir/frontend-project-11#readme"
+}
