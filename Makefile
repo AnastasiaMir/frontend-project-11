@@ -13,9 +13,9 @@ run:
 test:
 	npm run test
 
-build:
-	NODE_ENV=production npx webpack
-
 # build:
-# 	npm run build
+# 	NODE_ENV=production npx webpack
+
+build:
+	npm run build
 
