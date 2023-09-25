@@ -5,10 +5,13 @@
   "main": "src/init.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve",
-    "build": "webpack"
-  },
+    "test": "jest",
+    "build": "webpack --mode=production --node-env=production",
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production --node-env=production",
+    "watch": "webpack --watch",
+    "serve": "webpack serve"
+  },  
   "author": "Anastasia Mironova",
   "license": "ISC",
   "devDependencies": {
