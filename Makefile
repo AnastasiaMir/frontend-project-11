@@ -8,14 +8,14 @@ lint-fix:
 	npx eslint . --fix
 
 run:
-	npm start
+	npx webpack serve
 
 test:
 	npm run test
 
-# build:
-# 	NODE_ENV=production npx webpack
-
 build:
-	npm run build
+	NODE_ENV=production npx webpack
+
+# build:
+# 	npm run build
 
