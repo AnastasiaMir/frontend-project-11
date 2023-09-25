@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "frontendproject-11",
-  "main": "src/init.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "jest",
