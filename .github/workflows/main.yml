@@ -30,7 +30,7 @@ jobs:
     - run: npm install
     - run: npm ci
     - run: make lint
-    - run: make test
+    # - run: make test
     - name: Test & publish code coverage
       #   # Publish code coverage on Code Climate
       #   # https://github.com/paambaati/codeclimate-action
