@@ -9,3 +9,6 @@ lint-fix:
 
 run:
 	npm start
+
+test:
+	npm run test
