@@ -5,6 +5,3 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/53d62995371a618eed54/maintainability)](https://codeclimate.com/github/AnastasiaMir/frontend-project-11/maintainability)
 
 
-  output: {
-    clean: true,
-  },
