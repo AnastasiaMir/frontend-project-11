@@ -5,6 +5,7 @@ import validateUrl from './validator.js';
 import ru from './locales/ru.js';
 import fetch from './fetch.js';
 import parse from './parse.js';
+import updatePosts from './update.js';
 
 export default () => {
   const elements = {
@@ -55,7 +56,7 @@ export default () => {
         const newFeed = { feed, id: _.uniqueId, url };
         watchedState.feeds = [...watchedState.feeds, newFeed];
 
-        const newPosts = posts.map((post) => ({ ...post, feedId: newFeed.id, id: _.uniqueId }));
+        const newPosts = posts.map((post) => ({ ...post, feedId: newFeed.id }));
 
         watchedState.posts = [...newPosts, ...watchedState.posts];
         watchedState.rssForm.error = null;
@@ -63,10 +64,12 @@ export default () => {
       })
       .catch((error) => {
         // console.log(error)
-        watchedState.rssForm.valid = error.name !== 'ValidationError';
+        // watchedState.rssForm.valid = error.name !== 'ValidationError';
         watchedState.rssForm.error = error;
 
         watchedState.rssForm.state = 'filling';
       });
   });
+
+  setTimeout(() => updatePosts(watchedState), 5000);
 };
