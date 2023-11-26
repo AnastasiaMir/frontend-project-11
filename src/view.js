@@ -56,12 +56,13 @@ const renderPosts = (state, elements, i18n) => {
     const classVisited = state.visitedPosts.includes(post.title) ? ('fw-normal', 'link-secondary') : 'fw-bold';
     const li = document.createElement('li');
     li.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-start');
-    li.classList.add('border-0', 'border-end-0', classVisited);
+    li.classList.add('border-0', 'border-end-0');
 
     const a = document.createElement('a');
     a.setAttribute('href', post.link);
     a.dataset.id = post.title;
     a.setAttribute('target', '_blank');
+    a.classList.add(classVisited)
     a.setAttribute('rel', 'noopener noreferrer');
     a.textContent = post.title;
     li.append(a);
