@@ -1,5 +1,6 @@
-// @ts-check
-const { defineConfig, devices } = require('@playwright/test');
+/* eslint-disable import/no-import-module-exports */
+
+import { defineConfig, devices } from '@playwright/test';
 
 /**
  * Read environment variables from file.
