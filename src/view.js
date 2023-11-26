@@ -62,7 +62,7 @@ const renderPosts = (state, elements, i18n) => {
     a.setAttribute('href', post.link);
     a.dataset.id = post.title;
     a.setAttribute('target', '_blank');
-    a.classList.add(classVisited)
+    a.classList.add(classVisited);
     a.setAttribute('rel', 'noopener noreferrer');
     a.textContent = post.title;
     li.append(a);
