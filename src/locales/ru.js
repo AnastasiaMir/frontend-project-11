@@ -1,7 +1,7 @@
 export default {
   translation: {
     rssForm: {
-      success: 'RSS успешно добавлен!',
+      success: 'RSS успешно загружен',
       errors: {
         notOneOf: 'Cсылка уже добавлена!',
         url: 'Ссылка должна быть валидным URL!',
