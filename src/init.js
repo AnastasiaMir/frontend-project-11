@@ -1,5 +1,7 @@
+/* eslint-disable no-param-reassign */
 import _ from 'lodash';
 import i18next from 'i18next';
+import axios from 'axios';
 import initView from './view.js';
 import validateUrl from './validator.js';
 import ru from './locales/ru.js';
@@ -66,6 +68,11 @@ export default () => {
         watchedState.rssForm.state = 'success';
       })
       .catch((error) => {
+        if (axios.isAxiosError(error)) {
+          error.type = 'netWorkError';
+          watchedState.rssForm.error = error;
+        }
+        console.log(error);
         watchedState.rssForm.error = error;
         watchedState.rssForm.state = 'filling';
       });

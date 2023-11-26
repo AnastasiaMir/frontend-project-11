@@ -2,13 +2,18 @@
 import fetch from './fetch.js';
 import parse from './parse.js';
 
-export default (state) => {
+const updatePosts = (state) => {
   const previousPosts = state.posts.map((post) => post.title);
-  state.feeds.every((feed) => fetch(feed.url)
+  state.feeds.map((feed) => fetch(feed.url)
     .then((response) => {
-      const allPosts = parse(response.data.contents).posts;
-      const addedPosts = allPosts.filter((post) => !previousPosts.includes(post.title));
-      state.posts = [...addedPosts, ...addedPosts];
+      const currentPosts = parse(response.data.contents).posts;
+      const addedPosts = currentPosts.filter((post) => !previousPosts.includes(post.title));
+      if (addedPosts.length > 0) {
+        const newPosts = addedPosts.map((post) => ({ ...post, feedId: feed.id }));
+        state.posts = [...newPosts, ...currentPosts];
+      }
     })
     .catch((err) => console.log(err)));
 };
+
+export default updatePosts;
