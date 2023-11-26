@@ -15,6 +15,8 @@ export default () => {
     feedback: document.querySelector('.feedback'),
     postsContainer: document.querySelector('.posts'),
     feedsContainer: document.querySelector('.feeds'),
+    postButtons: document.querySelectorAll('.feeds'),
+    modal: document.querySelector('#modal'),
   };
 
   const state = {
@@ -26,6 +28,7 @@ export default () => {
     feeds: [],
     posts: [],
     visitedPosts: [],
+    modal: null,
   };
 
   const i18n = i18next.createInstance();
@@ -63,12 +66,19 @@ export default () => {
         watchedState.rssForm.state = 'success';
       })
       .catch((error) => {
-        // console.log(error)
-        // watchedState.rssForm.valid = error.name !== 'ValidationError';
         watchedState.rssForm.error = error;
-
         watchedState.rssForm.state = 'filling';
       });
+  });
+
+  elements.postsContainer.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log(e.target);
+    const visitedPostId = e.target.getAttribute('data-id');
+    if (e.target.localName === 'button') {
+      watchedState.modal = visitedPostId;
+    }
+    watchedState.visitedPosts = [...watchedState.visitedPosts, visitedPostId];
   });
 
   setTimeout(() => updatePosts(watchedState), 5000);

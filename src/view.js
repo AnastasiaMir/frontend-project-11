@@ -53,7 +53,7 @@ const renderPosts = (state, elements, i18n) => {
   ul.classList.add('list-group', 'border-0', 'rounded-0');
 
   state.posts.forEach((post) => {
-    const classVisited = state.visitedPosts.includes(post.id) ? 'fw-normal link-secondary' : 'fw-bold';
+    const classVisited = state.visitedPosts.includes(post.title) ? ('fw-normal', 'link-secondary') : 'fw-bold';
     const li = document.createElement('li');
     li.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-start');
     li.classList.add('border-0', 'border-end-0', classVisited);
@@ -81,6 +81,15 @@ const renderPosts = (state, elements, i18n) => {
   card.append(cardBody, ul);
 
   return elements.postsContainer.append(card);
+};
+const renderModal = (state, elements, modalTitle) => {
+  const [currentPost] = state.posts.filter((post) => post.title === modalTitle);
+  const title = elements.modal.querySelector('.modal-title');
+  title.textContent = modalTitle;
+  const body = elements.modal.querySelector('.modal-body');
+  body.textContent = currentPost.description;
+  const modalLink = elements.modal.querySelector('a');
+  modalLink.setAttribute('href', currentPost.link);
 };
 
 const renderError = (error, elements, i18n) => {
@@ -126,7 +135,6 @@ const initView = (state, elements, i18n) => onChange(state, (path, value) => {
       renderFeeds(state, elements, i18n);
       break;
     case 'posts':
-      // alert('posts');
       renderPosts(state, elements, i18n);
       break;
     case 'rssForm.error':
@@ -144,6 +152,9 @@ const initView = (state, elements, i18n) => onChange(state, (path, value) => {
       break;
     case 'rssForm.state':
       handleProcessState(value, elements, i18n);
+      break;
+    case 'modal':
+      renderModal(state, elements, value);
       break;
     default:
       throw new Error(`Unknown path: ${path}`);
