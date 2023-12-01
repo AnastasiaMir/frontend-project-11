@@ -8,5 +8,4 @@ const proxy = (url) => {
 export default (url) => {
   const urlProxy = proxy(url);
   return axios.get(urlProxy);
-  // .then((data) => console.log(data))
 };

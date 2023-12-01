@@ -79,7 +79,6 @@ export default () => {
   });
 
   elements.postsContainer.addEventListener('click', (e) => {
-    e.preventDefault();
     const visitedPostId = e.target.getAttribute('data-id');
     if (e.target.localName === 'button') {
       watchedState.modal = visitedPostId;
