@@ -5,7 +5,7 @@ import parse from './parse.js';
 const updatePosts = (state) => {
   console.log(1);
   const previousPosts = state.posts.map((post) => post.title);
-  const promises = state.feeds.map((feed) => fetch(feed.url)
+  state.feeds.map((feed) => fetch(feed.url)
     .then((response) => {
       const currentPosts = parse(response.data.contents).posts;
       const addedPosts = currentPosts.filter((post) => !previousPosts.includes(post.title));
