@@ -1,5 +1,4 @@
 /* eslint-disable no-param-reassign */
-import _ from 'lodash';
 import i18next from 'i18next';
 import axios from 'axios';
 import initView from './view.js';
@@ -58,12 +57,8 @@ export default () => {
       })
       .then((response) => {
         const { feed, posts } = parse(response.data.contents);
-        const newFeed = { feed, id: _.uniqueId, url };
-        watchedState.feeds = [...watchedState.feeds, newFeed];
-
-        const newPosts = posts.map((post) => ({ ...post, feedId: newFeed.id }));
-
-        watchedState.posts = [...newPosts, ...watchedState.posts];
+        watchedState.feeds = [...watchedState.feeds, { ...feed, url }];
+        watchedState.posts = [...posts, ...watchedState.posts];
         watchedState.rssForm.error = null;
         watchedState.rssForm.state = 'success';
       })
@@ -72,7 +67,7 @@ export default () => {
           error.type = 'netWorkError';
           watchedState.rssForm.error = error;
         }
-        console.log(error);
+        // console.log(error);
         watchedState.rssForm.error = error;
         watchedState.rssForm.state = 'filling';
       });

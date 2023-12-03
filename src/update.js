@@ -2,19 +2,20 @@
 import fetch from './fetch.js';
 import parse from './parse.js';
 
-const updatePosts = (state) => {
+const updatePosts = (watchedState) => {
   console.log(1);
-  const previousPosts = state.posts.map((post) => post.title);
-  state.feeds.map((feed) => fetch(feed.url)
-    .then((response) => {
-      const currentPosts = parse(response.data.contents).posts;
-      const addedPosts = currentPosts.filter((post) => !previousPosts.includes(post.title));
+  const previousPosts = watchedState.posts.map((post) => post.title);
+  const promises = watchedState.feeds.map((feed) => fetch(feed.url));
+  Promise.all(promises)
+    .then((results) => results.forEach((promise) => {
+      const { feed, posts } = parse(promise.data.contents);
+      const addedPosts = posts.filter((post) => !previousPosts.includes(post.title));
       if (addedPosts.length > 0) {
         const newPosts = addedPosts.map((post) => ({ ...post, feedId: feed.id }));
-        state.posts = [...newPosts, ...currentPosts];
+        watchedState.posts = [...newPosts, ...watchedState.posts];
       }
-    })
-    .catch((err) => console.log(err)));
+    }))
+    .finally(() => setTimeout(() => updatePosts(watchedState), 5000));
 };
 
 export default updatePosts;
