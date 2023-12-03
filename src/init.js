@@ -67,7 +67,6 @@ export default () => {
           error.type = 'netWorkError';
           watchedState.rssForm.error = error;
         }
-        // console.log(error);
         watchedState.rssForm.error = error;
         watchedState.rssForm.state = 'filling';
       });
